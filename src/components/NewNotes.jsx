@@ -79,8 +79,14 @@ const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
         >
           X
         </button>
-        <form style={{ display: 'flex', flexDirection: 'column' }}>
-          <div>
+        <form
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -89,7 +95,7 @@ const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="color">Choose Color</label>
             <div className="color-buttons">
               {backgroundColors.map((bgColor) => (
@@ -113,12 +119,10 @@ const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
             style={{
               width: '154px',
               height: '38px',
-              top: '607px',
-              left: '945px',
               borderRadius: '11px',
               background: '#000000',
               color: '#fff',
-              alignSelf: 'flex-end',
+              marginTop: '20px', // Add some top margin
             }}
             onClick={handleCreateNotes}
           >
@@ -136,6 +140,7 @@ NewNotes.propTypes = {
   id: PropTypes.number.isRequired,
   setShowModal: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
+  setID: PropTypes.func.isRequired,
 };
 
 export default NewNotes;

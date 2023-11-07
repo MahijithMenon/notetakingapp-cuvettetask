@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ProfilePicture = ({ userName, color }) => {
+const ProfilePicture = ({ userName, color, style }) => {
   const [abbreviatedName, setAbbreviatedName] = useState('');
 
   useEffect(() => {
@@ -29,6 +29,8 @@ const ProfilePicture = ({ userName, color }) => {
         fontWeight: 'bold',
         margin: '5px',
         padding: '10px',
+        marginRight: '20px',
+        ...style,
       }}
     >
       {abbreviatedName}
@@ -39,5 +41,6 @@ const ProfilePicture = ({ userName, color }) => {
 ProfilePicture.propTypes = {
   userName: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  style: PropTypes.object,
 };
 export default ProfilePicture;

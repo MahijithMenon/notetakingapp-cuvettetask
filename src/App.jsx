@@ -2,12 +2,14 @@ import PocketNotesImage from './assets/image-removebg-preview 1.png';
 import { useEffect, useState } from 'react';
 import NewNotes from './components/NewNotes';
 import ProfilePicture from './components/ProfilePicture';
+import './App.css';
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [isVisibleChat, setIsVisibleChat] = useState(false);
   const [currentGroup, setCurrentGroup] = useState(null);
   const [userTypedMessage, setUserTypedMessage] = useState('');
   const [newId, setNewID] = useState(0);
@@ -46,6 +48,7 @@ function App() {
     setShowMessage(true);
     setMessages(notes[id].messages);
     setCurrentGroup(notes[id]);
+    setIsVisibleChat(true);
   };
 
   useEffect(() => {
@@ -54,7 +57,7 @@ function App() {
       setNotes(JSON.parse(notes));
       setNewID(JSON.parse(notes).length);
     }
-    // console.log(notes);
+    console.log(JSON.parse(notes));
   }, []);
   return (
     <div style={{ display: 'flex', overflow: 'hidden' }}>
@@ -69,6 +72,7 @@ function App() {
         />
       )}
       <section
+        className={`chat-user-list ${isVisibleChat ? 'hide' : 'show'}`}
         style={{
           background: '#FFF',
           color: '#000',
@@ -150,6 +154,7 @@ function App() {
             overflowY: 'auto',
             maxHeight: '100%',
           }}
+          className={`chatSection ${isVisibleChat ? 'show' : 'hide'}`}
         >
           <div
             style={{
@@ -159,6 +164,14 @@ function App() {
               alignItems: 'center',
             }}
           >
+            {isVisibleChat && (
+              <button
+                className="close-btn-mobile"
+                onClick={() => setIsVisibleChat(false)}
+              >
+                X
+              </button>
+            )}
             <ProfilePicture
               userName={currentGroup.title}
               color={currentGroup.color}
@@ -187,7 +200,7 @@ function App() {
             ) : (
               <div style={{ overflowY: 'auto', maxHeight: '300px' }}>
                 {messages.map((message) => (
-                  <div key={message.id} style={{ display: 'flex' }}>
+                  <div key={message.time} style={{ display: 'flex' }}>
                     <div>
                       <p>{message.time}</p>
                       <p>{message.date}</p>
@@ -200,35 +213,9 @@ function App() {
               </div>
             )}
           </div>
-          <div
-            style={{
-              background: '#CCCCCC',
-              position: 'fixed',
-              bottom: '20px',
-              left: '340px',
-              right: '0',
-              height: '35%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-              width: '70.5%',
-            }}
-          >
+          <div className="message-box-div">
             <textarea
               placeholder="Enter Your Text Here"
-              style={{
-                color: '#000',
-                width: '67%',
-                height: '180px',
-                position: 'fixed',
-                bottom: '52px',
-                left: '370px',
-                right: '0',
-                margin: '0',
-                padding: '0',
-                border: '0',
-                resize: 'none',
-              }}
               onChange={(e) => setUserTypedMessage(e.target.value)}
               value={userTypedMessage}
             ></textarea>
@@ -268,6 +255,7 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
           }}
+          className={`chatSection ${isVisibleChat ? 'show' : 'hide'}`}
         >
           <img
             src={PocketNotesImage}
@@ -301,7 +289,9 @@ function App() {
                 fill="#292929"
               />
             </svg>
-            <span style={{ marginLeft: '10px' }}>end-to-end encrypted</span>
+            <span style={{ marginLeft: '10px', alignItems: 'center' }}>
+              end-to-end encrypted
+            </span>
           </div>
         </section>
       )}

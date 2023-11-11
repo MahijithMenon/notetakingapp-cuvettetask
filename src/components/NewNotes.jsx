@@ -1,32 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Modal from 'react-modal';
-
-const modalStyles = {
-  content: {
-    position: 'absolute',
-    width: '740px',
-    height: '317px',
-    top: '144px',
-    left: '256px',
-    background: '#fff',
-    padding: '20px',
-    borderRadius: '5px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-    textAlign: 'center',
-  },
-  overlay: {
-    background: 'rgba(0, 0, 0, 0.5)',
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
+import './NewNotes.css';
 
 const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
   const [title, setTitle] = useState('');
@@ -61,7 +36,7 @@ const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={modalStyles}
+        className={'my-modal'}
         shouldCloseOnOverlayClick={false}
       >
         <h1>Create New Notes Group</h1>
@@ -95,7 +70,10 @@ const NewNotes = ({ setNotes, notes, id, setID, setShowModal, showModal }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div
+            className="form-group"
+            style={{ display: 'flex', flexDirection: 'row', marginTop: '20px' }}
+          >
             <label htmlFor="color">Choose Color</label>
             <div className="color-buttons">
               {backgroundColors.map((bgColor) => (

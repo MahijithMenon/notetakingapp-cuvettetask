@@ -221,20 +221,7 @@ function App() {
             ></textarea>
             <button
               onClick={() => updateMessage(currentGroup.id)}
-              style={{
-                background: '#000',
-                color: '#FFF',
-                width: '5%',
-                height: '50px',
-                position: 'fixed',
-                bottom: '70px',
-                left: '1080px',
-                right: '0',
-                margin: '0',
-                padding: '0',
-                border: '0',
-                resize: 'none',
-              }}
+              className="send-btn"
             >
               {'>'}
             </button>

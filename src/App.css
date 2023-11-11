@@ -28,6 +28,20 @@ textarea{
   justify-content: space-around;
   width: 70.5%;
 }
+.send-btn{
+  background: #000;
+  color: #FFF;
+  width: 5%;
+  height: 50px;
+  position: fixed;
+  bottom: 70px;
+  left: 1080px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  resize: none;
+}
 @media only screen and (max-width: 600px) {
     .chat-user-list.show {
       display: block;
@@ -74,5 +88,19 @@ textarea{
         align-items: center;
         justify-content: space-around;
         width: 100%;
+      }
+      .send-btn{
+        background: #000;
+        color: #FFF;
+        width: 10%;
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        left: 350px;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        resize: none;
       }
   }
